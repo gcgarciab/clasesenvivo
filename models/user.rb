@@ -17,6 +17,7 @@ class User
   validates_presence_of :name, :email, :password, :token, :about
   validates_uniqueness_of :email, with: /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\Z/i
 
+  # TODO: mejorar el metodo
   def self.login(email, password)
     user = User.where(email: email, status: true).first
     if user
@@ -29,7 +30,8 @@ class User
       false
     end
   end
-
+  
+  # TODO: mejorar el metodo
   def self.generate_new_token(id)
     user = User.find(id)
     if user
