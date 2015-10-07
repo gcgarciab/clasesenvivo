@@ -5,7 +5,6 @@ gem 'oj'
 
 # Project requirements
 gem 'rake'
-#gem 'bcrypt'
 gem 'bcrypt-ruby', '~> 3.1.2'
 
 # Component requirements

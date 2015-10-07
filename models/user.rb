@@ -14,8 +14,15 @@ class User
   field :twitter, type:String
   field :status, type:Boolean, default: false
 
+  has_many :videos
+
   validates_presence_of :name, :email, :password, :token, :about
   validates_uniqueness_of :email, with: /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\Z/i
+
+  def self.validate_token(token)
+    user = User.where(token: token).first
+    user ? user : false
+  end
 
   # TODO: mejorar el metodo
   def self.login(email, password)
@@ -30,7 +37,7 @@ class User
       false
     end
   end
-  
+
   # TODO: mejorar el metodo
   def self.generate_new_token(id)
     user = User.find(id)
